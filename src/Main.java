@@ -3,9 +3,9 @@ import java.net.*;
 
 public class Main {
 
-    public static void main (String[] args) {
-        EchoServer server = new EchoServer();
-        EchoClient client = new EchoClient();
+    public static void main (String[] args) throws UnknownHostException {
+        EchoServer server = new EchoServer(8888);
+        EchoClient client = new EchoClient(InetAddress.getByName("localhost"), 8888);
 
         server.start();
 

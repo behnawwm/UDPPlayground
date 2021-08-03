@@ -4,26 +4,24 @@ import java.net.*;
 public class EchoClient {
     private DatagramSocket socket;
     private InetAddress address;
+    private int port;
 
     private byte[] buf;
 
-    public EchoClient () {
+    public EchoClient (InetAddress address, int port) {
         try {
             socket = new DatagramSocket();
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        try {
-            address = InetAddress.getByName("localhost");
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+        this.address = address;
+        this.port = port;
     }
 
     public String sendEcho (String msg) {
         buf = msg.getBytes();
         DatagramPacket packet
-                = new DatagramPacket(buf, buf.length, address, 4445);
+                = new DatagramPacket(buf, buf.length, address, port);
         try {
             socket.send(packet);
         } catch (IOException e) {

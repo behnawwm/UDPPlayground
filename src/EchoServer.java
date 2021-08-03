@@ -10,9 +10,9 @@ public class EchoServer extends Thread {
     private boolean isRunning;
     private byte[] buf = new byte[256];
 
-    public EchoServer () {
+    public EchoServer (int port) {
         try {
-            socket = new DatagramSocket(4445);
+            socket = new DatagramSocket(port);
         } catch (SocketException e) {
             e.printStackTrace();
         }
